@@ -1,0 +1,22 @@
+.main .btn-outline-secondary {
+    width: 100px;
+}
+.my-date {
+    position: relative;
+}
+.my-date:checked {
+    color: black;
+}
+.my-date::after {
+    pointer-events: none;
+    background-color: white;
+    text-align: center;
+    content: 'Дата';
+    color: inherit;
+    font-weight: inherit;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}

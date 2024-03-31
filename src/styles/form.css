@@ -1,0 +1,15 @@
+:root {
+--bs-heading-color: #052c65;
+}
+.form {
+    max-width: 400px;
+    width: 100%;
+}
+.form-check-input {
+    width: 13px;
+    height: 13px;
+    margin-top: 7px;
+}
+.form-check-label {
+    font-size: 12px;
+}
