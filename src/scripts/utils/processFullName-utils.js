@@ -1,5 +1,6 @@
-export class ProcessFulName {
-    static separation(fullNameString) {
+//утилита для разделения полного имени на составные строки и приведения их к заглавной букве
+export class ProcessFullNameUtils {
+    static separation(fullNameString) {//разделяем строку с полным именем на части
         if (fullNameString && typeof fullNameString === "string") {
             const arrFullName = fullNameString.split(' ');
             return {
@@ -9,7 +10,7 @@ export class ProcessFulName {
             }
         }
     }
-    static firstLatterToUpperCase(word) {
+    static firstLatterToUpperCase(word) {//приводим первую букву в слове к верхнему регистру
         if (word && typeof word === "string") {
             return word[0].toUpperCase() + word.slice(1);
         }

@@ -1,5 +1,5 @@
-<section class="row vh-100">
-  <nav class="navbar navbar-expand-md bg-body-transparent fixed-top flex-md-column col-xl-2 col-md-3 border-end border-body mh-100 py-2">
+<section class="d-flex flex-column flex-md-row h-100">
+  <nav class="navbar navbar-expand-md bg-body-transparent fixed-top flex-md-column col-xl-2 col-md-3 border-end border-body px-2 px-md-0 py-2">
     <a class="navbar-brand align-self-md-stretch m-0 mb-4 py-4 text-center border-bottom border-body" href="/">
       <svg width="101" height="40" viewBox="0 0 101 40" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.6043 32.7143V27.7127H13.9159V28.5845H11.6617V29.7763H13.6961V30.6482H11.6617V32.7143H10.6043ZM23.9373 27.7127V32.7143H22.8798V27.7127H23.9373ZM37.2434 27.7127V32.7143H36.33L34.154 29.5663H34.1174V32.7143H33.0599V27.7127H33.9879L36.1468 30.8582H36.1908V27.7127H37.2434ZM47.2318 32.7143H46.0986L47.8252 27.7127H49.188L50.9122 32.7143H49.779L48.5261 28.8556H48.4871L47.2318 32.7143ZM47.161 30.7483H49.8376V31.5738H47.161V30.7483ZM63.9503 27.7127V32.7143H63.0369L60.8609 29.5663H60.8243V32.7143H59.7668V27.7127H60.6948L62.8537 30.8582H62.8977V27.7127H63.9503ZM77.4896 29.4637H76.4199C76.4004 29.3253 76.3605 29.2024 76.3003 29.0949C76.24 28.9859 76.1627 28.8931 76.0683 28.8165C75.9738 28.74 75.8647 28.6814 75.741 28.6407C75.6189 28.6 75.4862 28.5796 75.3429 28.5796C75.0841 28.5796 74.8586 28.644 74.6664 28.7726C74.4743 28.8996 74.3254 29.0852 74.2195 29.3294C74.1137 29.572 74.0608 29.8667 74.0608 30.2135C74.0608 30.57 74.1137 30.8696 74.2195 31.1122C74.327 31.3548 74.4768 31.5379 74.6689 31.6617C74.861 31.7854 75.0832 31.8473 75.3356 31.8473C75.4772 31.8473 75.6083 31.8286 75.7288 31.7911C75.8509 31.7537 75.9592 31.6991 76.0536 31.6275C76.148 31.5542 76.2262 31.4655 76.2881 31.3613C76.3516 31.2571 76.3955 31.1382 76.4199 31.0047L77.4896 31.0096C77.4619 31.2392 77.3927 31.4606 77.282 31.6739C77.1729 31.8855 77.0256 32.0752 76.84 32.2429C76.656 32.409 76.4362 32.5409 76.1806 32.6386C75.9266 32.7346 75.6392 32.7826 75.3185 32.7826C74.8724 32.7826 74.4735 32.6817 74.1218 32.4798C73.7718 32.2779 73.495 31.9857 73.2915 31.6031C73.0896 31.2205 72.9887 30.7573 72.9887 30.2135C72.9887 29.668 73.0912 29.204 73.2964 28.8214C73.5015 28.4388 73.7799 28.1474 74.1316 27.9471C74.4833 27.7452 74.8789 27.6443 75.3185 27.6443C75.6083 27.6443 75.877 27.685 76.1244 27.7664C76.3735 27.8478 76.5941 27.9667 76.7863 28.123C76.9784 28.2776 77.1347 28.4673 77.2552 28.692C77.3773 28.9167 77.4554 29.1739 77.4896 29.4637ZM86.5005 32.7143V27.7127H89.8708V28.5845H87.558V29.7763H89.6974V30.6482H87.558V31.8424H89.8805V32.7143H86.5005Z" fill="#052C65"/>
@@ -20,9 +20,9 @@
         <button type="button" class="btn-close btn-close-secondary" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body p-3 flex-grow-1 d-flex flex-column justify-content-between">
-        <ul class="navbar-nav flex-column pt-3">
+        <ul id="layout-navigation" class="navbar-nav flex-column pt-3">
           <li class="nav-item">
-            <a href="#" class="text-start border-0 btn active w-100" role="button">
+            <a href="/" class="text-start border-0 btn active w-100" role="button">
               <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 12.3964V5.89641H2.5V12.3964C2.5 12.6726 2.72386 12.8964 3 12.8964H12C12.2761 12.8964 12.5 12.6726 12.5 12.3964V5.89641H13.5V12.3964C13.5 13.2248 12.8284 13.8964 12 13.8964H3C2.17157 13.8964 1.5 13.2248 1.5 12.3964Z" fill="#052C65" />
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 1.39641V4.89641L10.5 2.89641V1.39641C10.5 1.12027 10.7239 0.896409 11 0.896409H12C12.2761 0.896409 12.5 1.12027 12.5 1.39641Z" fill="#052C65" />
@@ -32,7 +32,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="text-start btn w-100 border-0 text-nowrap" role="button">
+            <a href="/budget" class="text-start btn w-100 border-0 text-nowrap" role="button">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M11 15C13.2091 15 15 13.2091 15 11C15 8.79086 13.2091 7 11 7C8.79086 7 7 8.79086 7 11C7 13.2091 8.79086 15 11 15ZM16 11C16 13.7614 13.7614 16 11 16C8.23858 16 6 13.7614 6 11C6 8.23858 8.23858 6 11 6C13.7614 6 16 8.23858 16 11Z" fill="#052C65" />
                 <path d="M9.4375 11.9444C9.48519 12.5403 9.95568 13.0049 10.8013 13.0599V13.5H11.1764V13.0568C12.0507 12.9957 12.5625 12.5281 12.5625 11.8496C12.5625 11.2323 12.1715 10.9144 11.4721 10.7494L11.1764 10.6791V9.48105C11.5516 9.52384 11.79 9.72861 11.8472 10.0128H12.5053C12.4576 9.43826 11.9648 8.989 11.1764 8.9401V8.5H10.8013V8.94927C10.0542 9.02262 9.54559 9.47188 9.54559 10.1076C9.54559 10.6699 9.92389 11.0275 10.5533 11.1742L10.8013 11.2353V12.5067C10.4166 12.4487 10.1623 12.2378 10.1051 11.9444H9.4375ZM10.7981 10.5905C10.4294 10.5049 10.2291 10.3307 10.2291 10.0678C10.2291 9.77445 10.4453 9.5544 10.8013 9.49022V10.5905H10.7981ZM11.2305 11.3362C11.6787 11.4401 11.8854 11.6082 11.8854 11.9046C11.8854 12.2439 11.6279 12.4762 11.1764 12.5189V11.324L11.2305 11.3362Z" fill="#052C65" />
@@ -46,15 +46,15 @@
             <div class="accordion rounded-0" id="accordionExample">
               <div class="accordion-item border-0">
                 <h2 class="accordion-header">
-                  <button class="text-start accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <button id="accordion-button-category" class="text-start accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                     Категории
                   </button>
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse border border-primary" data-bs-parent="#accordionExample">
                   <div class="accordion-body p-0">
                     <div class="list-group rounded-0 rounded-bottom-1">
-                      <a href="#" class="list-group-item list-group-item-action active">Доходы</a>
-                      <a href="#" class="list-group-item list-group-item-action">Расходы</a>
+                      <a href="/income" class="list-group-item list-group-item-action">Доходы</a>
+                      <a href="/expenses" class="list-group-item list-group-item-action">Расходы</a>
                     </div>
                   </div>
                 </div>
@@ -63,7 +63,7 @@
           </li>
         </ul>
         <div class="balance text-nowrap">
-          Баланс: <span class="balance__number">500$</span>
+          Баланс: <span id="user-balance" class="balance__number">0</span>
         </div>
       </div>
       <div class="pt-3 pb-4 px-3 border-top border-body">
@@ -78,5 +78,5 @@
       </div>
     </div>
   </nav>
-  <section id="layout-content" class="layout-content col-xl-10 col-md-9 h-100 container px-5"></section>
+  <section id="layout-content" class="layout-content col-xl-10 col-md-9 mh-100 px-3 px-lg-5 overflow-y-scroll"></section>
 </section>

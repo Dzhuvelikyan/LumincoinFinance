@@ -6,6 +6,7 @@
         </svg>
     </figure>
     <h2 class="h1 mb-4 mt-2 text-center fw-medium">Создайте аккаунт</h2>
+    <p id="common-error" class="error invalid-feedback text-center mb-3"></p>
     <form class="form">
         <label for="full-name" class="input-group mb-2">
                 <span class="input-group-text">
@@ -14,6 +15,7 @@
 </svg>
                 </span>
             <input type="text" class="form-control" id="full-name" placeholder="ФИО">
+            <div class="invalid-feedback ps-5">Не корректное ФИО</div>
         </label>
         <label for="email" class="input-group mb-2">
                 <span class="input-group-text">
@@ -24,6 +26,7 @@
                 </svg>
                 </span>
             <input type="email" class="form-control" id="email" placeholder="Электронная почта">
+            <div class="invalid-feedback ps-5">Введите корректный Email</div>
         </label>
         <label for="password" class="input-group mb-2">
                 <span class="input-group-text">
@@ -34,6 +37,7 @@
                     </svg>
                 </span>
             <input type="password" class="form-control" id="password" placeholder="Пароль">
+            <div class="invalid-feedback ps-5">Введите корректный пароль</div>
         </label>
         <label for="repeat-password" class="input-group">
                 <span class="input-group-text">
@@ -44,8 +48,9 @@
                     </svg>
                 </span>
             <input type="password" class="form-control" id="repeat-password" placeholder="Подтверждение пароля">
+            <div class="invalid-feedback ps-5">Пароли должны совпадать</div>
         </label>
-        <a id="signup-process-btn" href="javascript:void(0)" class="btn btn-primary w-100 mb-2 mt-3">Войти</a>
+        <a id="process-btn" href="javascript:void(0)" class="btn btn-primary w-100 mb-2 mt-3">Войти</a>
         <p><small>Уже есть аккаунт?<a class="ms-2" href="/login">Войдите в систему</a></small></p>
     </form>
 </section>

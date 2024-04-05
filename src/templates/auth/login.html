@@ -6,8 +6,9 @@
         </svg>
     </figure>
     <h2 class="h1 mb-4 mt-2 text-center fw-medium">Вход</h2>
+    <p id="common-error" class="error invalid-feedback text-center mb-3"></p>
     <form class="form">
-        <label for="login-email" class="input-group mb-2">
+        <label for="email" class="input-group mb-2">
                 <span class="input-group-text">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
@@ -15,10 +16,10 @@
                           fill="#6C757D"/>
                 </svg>
                 </span>
-            <input type="email" class="form-control" id="login-email" placeholder="Электронная почта">
+            <input type="email" class="form-control" id="email" placeholder="Электронная почта">
             <div class="invalid-feedback ps-5">Введите корректный Email</div>
         </label>
-        <label for="login-password" class="input-group">
+        <label for="password" class="input-group">
                 <span class="input-group-text">
                     <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" clip-rule="evenodd"
@@ -26,14 +27,14 @@
                             fill="#6C757D"/>
                     </svg>
                 </span>
-            <input type="password" class="form-control" id="login-password" placeholder="Пароль">
+            <input type="password" class="form-control" id="password" placeholder="Пароль">
             <div class="invalid-feedback ps-5">Введите пароль</div>
         </label>
         <div class="form-check mt-2">
             <input type="checkbox" class="form-check-input" id="remember-me">
             <label class="form-check-label fw-medium" for="remember-me">Запомнить меня</label>
         </div>
-        <a id="login-process-btn" href="javascript:void(0)" class="btn btn-primary w-100 mb-2 mt-3 ">Войти</a>
+        <a id="process-btn" href="javascript:void(0)" class="btn btn-primary w-100 mb-2 mt-3 ">Войти</a>
         <p><small>Ещё нет аккаунта?<a class="ms-2" href="/signup">Пройдите регистрацию</a></small></p>
     </form>
 </section>

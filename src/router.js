@@ -1,7 +1,5 @@
-import {Auth} from "./scripts/service/auth.js";
-import {Login} from "./scripts/components/login.js";
-import {Signup} from "./scripts/components/signup.js";
-import {Layout} from "./scripts/components/layout.js"
+import {Auth} from "./scripts/components/auth.js";
+import {Layout} from "./scripts/components/layout.js";
 
 export class Router {
     pageTitleElement = document.getElementById('page-title');
@@ -21,20 +19,20 @@ export class Router {
             route: '/login',
             title: 'Авторизация',
             layout: false,
-            template: '/templates/login.html',
+            template: '/templates/auth/login.html',
             styles: ['form.css'],
             load: () => {
-                new Login(this.openRoute.bind(this));
+                new Auth('login',this.openRoute.bind(this));
             }
         },
         {
             route: '/signup',
             title: 'Регистрация',
             layout: false,
-            template: '/templates/signup.html',
+            template: '/templates/auth/signup.html',
             styles: ['form.css'],
             load: () => {
-                new Signup(this.openRoute.bind(this));
+                new Auth('signup', this.openRoute.bind(this));
             }
         },
         {
@@ -44,97 +42,97 @@ export class Router {
             template: '/templates/main.html',
             styles: ['layout.css', 'main.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/budget',
             title: 'Доходы и расходы',
             layout: '/templates/layout.html',
-            template: '/templates/budget.html',
+            template: '/templates/budget/budget.html',
             styles: ['layout.css', 'budget.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/budget_create',
             title: 'Доходы и расходы: Создание',
             layout: '/templates/layout.html',
-            template: '/templates/budget_create.html',
+            template: '/templates/budget/budget_create.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/budget_edit',
             title: 'Доходы и расходы: Редактирование',
             layout: '/templates/layout.html',
-            template: '/templates/budget_edit.html',
+            template: '/templates/budget/budget_edit.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/income',
             title: 'Доходы',
             layout: '/templates/layout.html',
-            template: '/templates/income.html',
+            template: '/templates/income/income.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/income_create',
             title: 'Доходы: Создание категории',
             layout: '/templates/layout.html',
-            template: '/templates/income_create.html',
+            template: '/templates/income/income_create.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/income_edit',
             title: 'Доходы: Редактирование категории',
             layout: '/templates/layout.html',
-            template: '/templates/income_edit.html',
+            template: '/templates/income/income_edit.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/expenses',
             title: 'Расходы',
             layout: '/templates/layout.html',
-            template: '/templates/expenses.html',
+            template: '/templates/expenses/expenses.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/expenses_create',
             title: 'Расходы: Создание категории',
             layout: '/templates/layout.html',
-            template: '/templates/expenses_create.html',
+            template: '/templates/expenses/expenses_create.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
         {
             route: '/expenses_edit',
             title: 'Расходы: Редактирование категории',
             layout: '/templates/layout.html',
-            template: '/templates/expenses_edit.html',
+            template: '/templates/expenses/expenses_edit.html',
             styles: ['layout.css'],
             load: () => {
-                Auth.checkAuth(this.openRoute.bind(this));
+
             }
         },
     ];
@@ -192,7 +190,7 @@ export class Router {
                         layoutContent = document.getElementById('layout-content');
                     }
                     layoutContent.innerHTML = await fetch(currentRoute.template).then(response => response.text());
-                    new Layout();
+                    new Layout(this.openRoute.bind(this));
                 } else {
                     this.contentElement.innerHTML = await fetch(currentRoute.template).then(response => response.text());
                 }

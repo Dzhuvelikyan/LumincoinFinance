@@ -2,6 +2,18 @@
 .layout-content {
     padding: 6rem 0 6rem;
 }
+.layout-content::-webkit-scrollbar {
+    padding: 0 2px;
+    width: 0;
+    background: transparent;
+}
+.layout-content::-webkit-scrollbar-track {
+    background-image:-webkit-linear-gradient(180deg, rgba(255, 0, 0, 0) 40%, black 50%, rgba(255, 0, 0, 0) 60%);
+}
+.layout-content::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: var(--bs-primary);
+}
 
 nav.navbar.fixed-top {
     position: static;
@@ -66,6 +78,9 @@ nav.navbar.fixed-top {
     color: #0d6efd;
 }
 @media screen and (max-width: 768px) {
+    .layout-content {
+        padding: 3rem 0 0;
+    }
     nav.navbar .navbar-brand {
         border-bottom: none !important;
     }
@@ -75,5 +90,10 @@ nav.navbar.fixed-top {
     }
     .navbar-expand-md .offcanvas {
         width: auto !important;
+    }
+}
+@media screen and (max-width: 425px) {
+    .layout-content {
+        padding: 1rem 0;
     }
 }

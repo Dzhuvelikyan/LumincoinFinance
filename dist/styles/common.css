@@ -17,10 +17,29 @@
     --second-family: InterBold, sans-serif;
     --third-family: SecretServiceRegular, sans-serif;
     --color-link: #052c65;
-
     --accordion-icon-color: #052c65;
     --accordion-icon-active-color: white;
 }
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
 body {
     font-family: var(--font-family);
+}
+.h1 {
+    color: #052c65;
+}
+h3 {
+    color: #290661 !important;
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 425px) {
+    html {
+        font-size: 12px;
+    }
 }
