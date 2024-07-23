@@ -33,6 +33,17 @@ body {
 h3 {
     color: #290661 !important;
 }
+
+/*.label-interval span {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    cursor: pointer;*/
+/*    transition: 300ms;*/
+/*}*/
+.label-interval span:hover {
+    text-decoration: underline;
+}
 @media screen and (max-width: 768px) {
     html {
         font-size: 14px;

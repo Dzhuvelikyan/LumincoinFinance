@@ -1,5 +1,13 @@
 import {Auth} from "./scripts/components/auth.js";
 import {Layout} from "./scripts/components/layout.js";
+import {AuthUtils} from "./scripts/utils/auth-utils.js";
+import {Categories} from "./scripts/components/categories.js";
+import {EditCategory} from "./scripts/components/editCategory.js";
+import {Main} from "./scripts/components/main.js";
+import {CreateCategory} from "./scripts/components/createCategory.js";
+import {Budget} from "./scripts/components/budget.js";
+import {BudgetEdit} from "./scripts/components/budgetEdit.js";
+import {BudgetCreate} from "./scripts/components/budgetCreate.js";
 
 export class Router {
     pageTitleElement = document.getElementById('page-title');
@@ -36,13 +44,20 @@ export class Router {
             }
         },
         {
+            route: '/logout',
+            load: () => {
+                AuthUtils.removeAuthInfo();
+                this.openRoute('login').then();
+            }
+        },
+        {
             route: '/',
             title: 'Главная',
             layout: '/templates/layout.html',
             template: '/templates/main.html',
             styles: ['layout.css', 'main.css'],
             load: () => {
-
+                new Main(this.openRoute.bind(this));
             }
         },
         {
@@ -52,7 +67,7 @@ export class Router {
             template: '/templates/budget/budget.html',
             styles: ['layout.css', 'budget.css'],
             load: () => {
-
+                new Budget(this.openRoute.bind(this));
             }
         },
         {
@@ -62,7 +77,7 @@ export class Router {
             template: '/templates/budget/budget_create.html',
             styles: ['layout.css'],
             load: () => {
-
+                new BudgetCreate(this.openRoute.bind(this));
             }
         },
         {
@@ -72,7 +87,7 @@ export class Router {
             template: '/templates/budget/budget_edit.html',
             styles: ['layout.css'],
             load: () => {
-
+                new BudgetEdit(this.openRoute.bind(this));
             }
         },
         {
@@ -82,7 +97,7 @@ export class Router {
             template: '/templates/income/income.html',
             styles: ['layout.css'],
             load: () => {
-
+                new Categories('income' ,this.openRoute.bind(this));
             }
         },
         {
@@ -92,7 +107,7 @@ export class Router {
             template: '/templates/income/income_create.html',
             styles: ['layout.css'],
             load: () => {
-
+                new CreateCategory('income' ,this.openRoute.bind(this));
             }
         },
         {
@@ -102,7 +117,7 @@ export class Router {
             template: '/templates/income/income_edit.html',
             styles: ['layout.css'],
             load: () => {
-
+                new EditCategory('income' ,this.openRoute.bind(this));
             }
         },
         {
@@ -112,7 +127,7 @@ export class Router {
             template: '/templates/expenses/expenses.html',
             styles: ['layout.css'],
             load: () => {
-
+                new Categories('expenses' ,this.openRoute.bind(this));
             }
         },
         {
@@ -122,7 +137,7 @@ export class Router {
             template: '/templates/expenses/expenses_create.html',
             styles: ['layout.css'],
             load: () => {
-
+                new CreateCategory('expenses' ,this.openRoute.bind(this));
             }
         },
         {
@@ -132,7 +147,7 @@ export class Router {
             template: '/templates/expenses/expenses_edit.html',
             styles: ['layout.css'],
             load: () => {
-
+                new EditCategory('expenses' ,this.openRoute.bind(this));
             }
         },
     ];
@@ -190,7 +205,9 @@ export class Router {
                         layoutContent = document.getElementById('layout-content');
                     }
                     layoutContent.innerHTML = await fetch(currentRoute.template).then(response => response.text());
-                    new Layout(this.openRoute.bind(this));
+
+                    new Layout();
+
                 } else {
                     this.contentElement.innerHTML = await fetch(currentRoute.template).then(response => response.text());
                 }
