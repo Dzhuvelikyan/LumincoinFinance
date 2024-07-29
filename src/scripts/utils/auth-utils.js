@@ -52,6 +52,8 @@ export class AuthUtils {
                 if (tokensResult && !tokensResult.error) {
                     this.setAuthInfo(tokensResult.tokens.accessToken, tokensResult.tokens.refreshToken);
                     result = true;
+                } else {
+                    throw new Error(tokensResult.message);
                 }
             }
         }

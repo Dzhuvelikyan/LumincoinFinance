@@ -1,15 +1,26 @@
 import {HttpUtils} from "../utils/http-utils.js";
 import {config} from "../config.js";
+import {AuthUtils} from "../utils/auth-utils.js";
 
 export class Layout {
     userElement = document.getElementById("user");
+    userNameElement = document.getElementById("user-name");
     navBtnElements = document.querySelectorAll("#layout-navigation a");
     accordionCategoryBtn = document.getElementById('accordion-button-category');
     accordionCategoryList = document.getElementById('collapseOne');
     userBalanceElement = document.getElementById('user-balance');
-    constructor() {
+    constructor(openRoute) {
+        this.openRoute = openRoute;
 
-        //this.getUserBalance().then();
+        //выводим баланс на страницу
+        setTimeout(() => {
+            this.getUserBalance().then();
+        }, 100)
+
+        //выводим имя пользователя на страницу
+        if (AuthUtils.getAuthInfo().userInfo) {
+            this.userNameElement.innerText = AuthUtils.getAuthInfo().userInfo.name + ' ' + AuthUtils.getAuthInfo().userInfo.lastName;
+        }
 
         this.toggleClassButtonsNav();
         if(this.userElement) {
@@ -20,14 +31,15 @@ export class Layout {
     async getUserBalance() {
         const result = await HttpUtils.request('/balance');//получаем баланс пользователя
         if (result) {
-            // if (result.redirect) {//проверяем нужен ли редирект на логин
-            //     this.openRoute(result.redirect);
-            // }
+            if (result.redirect) {//проверяем нужен ли редирект на логин
+                this.openRoute(result.redirect);
+            }
             if (result.response.balance) {
-                this.userBalanceElement.innerText = result.response.balance + config.currency;
+                this.userBalanceElement.innerText = result.response.balance + config.currency
             }
         }
     }
+
     toggleClassButtonsNav() {
 
         this.navBtnElements.forEach(btn=> {

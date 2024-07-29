@@ -20,12 +20,15 @@
 .budget table > thead th {
     color: var(--color-link);
 }
-@media screen and (max-width: 768px) {
-
+.label-interval {
+    pointer-events: none;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 500ms;
 }
-@media screen and (max-width: 575px) {
 
-}
-@media screen and (max-width: 425px) {
-
+.label-interval.active {
+    pointer-events: visible;
+    transform: translateY(0);
+    opacity: 1;
 }

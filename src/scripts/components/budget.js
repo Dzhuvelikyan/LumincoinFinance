@@ -1,7 +1,8 @@
 import {HttpUtils} from "../utils/http-utils.js";
 import {config} from "../config.js";
 import {UrlParams} from "../utils/url-params.js";
-import {FilterOperation} from "../utils/filterOperation.js";
+import {DateTime} from "luxon";
+import {FormattingDate} from "../utils/fomatting-date";
 
 export class Budget {
 
@@ -56,39 +57,61 @@ export class Budget {
 
     async getOperations() {
 
-        if (this.filterURL === 'interval') {
-            const dataFrom = document.getElementById('interval-date-from').value;
-            const dataTo = document.getElementById('interval-date-to').value;
+        const today = DateTime.now();
+        let dataFrom = null;
+        let dataTo = `${today.year}-${FormattingDate.init(today.month)}-${FormattingDate.init(today.day)}`;//сегодня
+        let period = {week: 1}
 
-            if (!dataFrom || !dataTo) {
-                return
-            }
+        switch (this.filterURL) {
+            case 'today':
+                dataFrom = dataTo;
+                break;
+            case 'all':
+                period = {year: 10}
+                break;
+            case 'week':
+                period = {week: 1}
+                break;
+            case 'month':
+                period = {month: 1}
+                break;
+            case 'year':
+                period = {year: 1}
+                break;
+            case 'interval':
+                const inputFromElement = document.getElementById('interval-date-from');
+                const inputToElement = document.getElementById('interval-date-to');
 
-            const result = await HttpUtils.request(`${config.operationsURL}?period=interval&dateFrom=${dataFrom}&dateTo=${dataTo}`);
+                setTimeout(function () {
+                    inputFromElement.closest('label').classList.add('active');
+                    inputToElement.closest('label').classList.add('active');
+                }, 0)
 
-            if (result) {
-                if (result.response) {
-                    this.showRecords.call(this, result.response);
+                dataFrom = inputFromElement.value;
+                dataTo = inputToElement.value;
+
+                if (!dataFrom || !dataTo) {
+                    return
                 }
-            }
-            return;
+                break;
         }
 
+        if (this.filterURL !== 'interval' && this.filterURL !== 'today') {
+            dataFrom = `${today.minus(period).year}-
+        ${FormattingDate.init(today.minus(period).month)}-
+        ${FormattingDate.init(today.minus(period).day)}`;
+        }
 
-        let count = 0;
-        let result = null;
-
-        //использую цикл что-бы получить все операции
-        do {
-            count++;
-            result = await HttpUtils.request(`${config.operationsURL}/${count}`);
+        try {
+            const result = await HttpUtils.request(`${config.operationsURL}?period=interval&dateFrom=${dataFrom}&dateTo=${dataTo}`);
             if (result) {
-                if (result.response && result.response.id && !result.response.error) {
-                    this.operations.push(result.response);
+                if (result.response && !result.response.error) {
+                    this.showRecords(result.response);
                 }
             }
-
-        } while (!result || !result.response.error);
+        } catch (err) {
+            throw new Error(err.message);
+        }
 
     }
 
@@ -110,23 +133,16 @@ export class Budget {
         if (!this.recordsElement) {
             return console.log('тело таблицы tbody с id=records отсутствует');
         }
-        console.log(operations);
-        this.recordsElement.innerHTML = '';
 
         for (let i = 0; i < operations.length; i++) {
 
-            let operation = FilterOperation.init(operations[i]);//фильтрация операции
-
-
-            if (!operation) {
-                continue;
-            }
+            const operation = operations[i];
 
             const trElement = document.createElement("tr");
             let operationTypeElement = null;
 
             // insertCell() - сразу добавляет td элемент в trElement
-            trElement.insertCell().innerText = `${operation.id}`;//порядковый номер в таблице
+            trElement.insertCell().innerText = `${i + 1}`;//порядковый номер в таблице
 
             if (operation.type === 'income') {
                 operationTypeElement = `<div class="text-success">Доход</div>`;

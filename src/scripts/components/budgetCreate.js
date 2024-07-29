@@ -82,9 +82,6 @@ export class BudgetCreate {
                 alert(`${nameType} для категории "${result.response.category}" успешно создан.`);
                 this.openRoute(`/budget?filter=today`);
             }
-            // else if (result.response && result.response.message === 'This record already exists') {
-            //     alert(`Категория "${nameCategory}" уже существует.`);
-            // }
         }
     }
 }

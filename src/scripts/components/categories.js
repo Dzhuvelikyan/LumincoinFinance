@@ -43,7 +43,6 @@ export class Categories {
         if(!this.ItemCreateElement || (!categories && categories.length === 0)) {
              return;
         }
-        console.log(categories);
         //добавляем полученные категории на страницу
         categories.forEach(category => {
             this.ItemCreateElement.insertAdjacentHTML('beforebegin', `

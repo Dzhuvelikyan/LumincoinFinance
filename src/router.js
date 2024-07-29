@@ -206,8 +206,7 @@ export class Router {
                     }
                     layoutContent.innerHTML = await fetch(currentRoute.template).then(response => response.text());
 
-                    new Layout();
-
+                    new Layout(this.openRoute.bind(this));
                 } else {
                     this.contentElement.innerHTML = await fetch(currentRoute.template).then(response => response.text());
                 }

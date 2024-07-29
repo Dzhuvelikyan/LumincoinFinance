@@ -48,7 +48,7 @@ export class HttpUtils {
                     const updateTokenResult = await AuthUtils.updateRefreshToken();
                     if (updateTokenResult) {
                         //повторяем запрос(метод) c теми-же аргументами которые передались при запросе, если получилось обновить токены
-                        return this.request(url, method, useAuth, body);
+                        return await this.request(url, method, useAuth, body);
                     } else {
                         result.redirect = '/login';
                     }
