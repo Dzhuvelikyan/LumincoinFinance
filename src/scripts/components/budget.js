@@ -1,27 +1,20 @@
 import {HttpUtils} from "../utils/http-utils.js";
 import {config} from "../config.js";
 import {UrlParams} from "../utils/url-params.js";
-import {DateTime} from "luxon";
-import {FormattingDate} from "../utils/fomatting-date";
+import {Filtration} from "./filtration.js";
 
 export class Budget {
 
     recordsElement = document.getElementById('records');// тело таблицы <tbody id="records">
-    navFilterElements = document.querySelectorAll('.nav-buttons a');//кнопки навигации
 
     constructor(openRoute) {
 
         this.filterURL = UrlParams.get('filter').param;
 
-        this.operations = [];//все операции доход\расход
-
         this.openRoute = openRoute;
 
-        //получаем все операции потом записываем их в таблицу
-        this.getOperations().then(this.showRecords.bind(this, this.operations));
-
-        //добавляем активный класс кнопке в зависимости от query-параметра
-        this.activeFilterButton();
+        //получаем операции и записываем их в таблицу
+        this.getOperations().then();
 
         document.addEventListener('click', this.clickDeleteHandler.bind(this));
 
@@ -34,22 +27,14 @@ export class Budget {
 
     }
 
-    activeFilterButton() {
-        this.navFilterElements.forEach(btn => {
-            if (btn.href.includes(this.filterURL)) {
-                btn.classList.add('active');
-            }
-        });
-    }
-
     async clickDeleteHandler(eve) {
         if (eve.target.closest('.modal-footer')) {
 
             if (eve.target.classList.contains('btn-success')) {
                 this.deleteOperation().then();
-                this.openRoute(`/budget`);
+                this.openRoute(`/budget?filter=${this.filterURL}`);
             } else if (eve.target.classList.contains('btn-danger')) {
-                this.openRoute(`/budget`);
+                this.openRoute(`/budget?filter=${this.filterURL}`);
             }
 
         }
@@ -57,62 +42,20 @@ export class Budget {
 
     async getOperations() {
 
-        const today = DateTime.now();
-        let dataFrom = null;
-        let dataTo = `${today.year}-${FormattingDate.init(today.month)}-${FormattingDate.init(today.day)}`;//сегодня
-        let period = {week: 1}
+        //получаем даты периода и делаем запрос
+        let [dataFrom, dataTo] = Filtration.getPeriod();
 
-        switch (this.filterURL) {
-            case 'today':
-                dataFrom = dataTo;
-                break;
-            case 'all':
-                period = {year: 10}
-                break;
-            case 'week':
-                period = {week: 1}
-                break;
-            case 'month':
-                period = {month: 1}
-                break;
-            case 'year':
-                period = {year: 1}
-                break;
-            case 'interval':
-                const inputFromElement = document.getElementById('interval-date-from');
-                const inputToElement = document.getElementById('interval-date-to');
-
-                setTimeout(function () {
-                    inputFromElement.closest('label').classList.add('active');
-                    inputToElement.closest('label').classList.add('active');
-                }, 0)
-
-                dataFrom = inputFromElement.value;
-                dataTo = inputToElement.value;
-
-                if (!dataFrom || !dataTo) {
-                    return
-                }
-                break;
+        if (!dataFrom || !dataTo) {
+            return
         }
 
-        if (this.filterURL !== 'interval' && this.filterURL !== 'today') {
-            dataFrom = `${today.minus(period).year}-
-        ${FormattingDate.init(today.minus(period).month)}-
-        ${FormattingDate.init(today.minus(period).day)}`;
-        }
-
-        try {
-            const result = await HttpUtils.request(`${config.operationsURL}?period=interval&dateFrom=${dataFrom}&dateTo=${dataTo}`);
-            if (result) {
-                if (result.response && !result.response.error) {
-                    this.showRecords(result.response);
-                }
+        const result = await HttpUtils.request(`${config.operationsURL}?period=interval&dateFrom=${dataFrom}&dateTo=${dataTo}`);
+        if (result) {
+            if (result.response && !result.response.error) {
+                //выводим операции на экран
+                this.showRecords(result.response);
             }
-        } catch (err) {
-            throw new Error(err.message);
         }
-
     }
 
     async deleteOperation() {
@@ -134,11 +77,22 @@ export class Budget {
             return console.log('тело таблицы tbody с id=records отсутствует');
         }
 
+        if (this.filterURL === 'interval') {
+            this.recordsElement.innerHTML = '';
+        }
+
+        if (operations.length === 0) {
+            this.recordsElement.innerHTML = `<tr><td colspan="10" class="text-center">В этом периоде операций нет</td></tr>`;
+            return;
+        }
+
         for (let i = 0; i < operations.length; i++) {
 
             const operation = operations[i];
 
             const trElement = document.createElement("tr");
+            trElement.classList.add('record');
+
             let operationTypeElement = null;
 
             // insertCell() - сразу добавляет td элемент в trElement
@@ -184,6 +138,9 @@ export class Budget {
 
             // вставляем в таблицу(tbody) сформированную строку с данными
             this.recordsElement.appendChild(trElement);
+            setTimeout(() => {
+                trElement.classList.add('active');
+            }, 10)
         }
 
     }

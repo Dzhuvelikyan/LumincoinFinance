@@ -8,6 +8,7 @@ import {CreateCategory} from "./scripts/components/createCategory.js";
 import {Budget} from "./scripts/components/budget.js";
 import {BudgetEdit} from "./scripts/components/budgetEdit.js";
 import {BudgetCreate} from "./scripts/components/budgetCreate.js";
+import {Filtration} from "./scripts/components/filtration.js";
 
 export class Router {
     pageTitleElement = document.getElementById('page-title');
@@ -56,6 +57,7 @@ export class Router {
             layout: '/templates/layout.html',
             template: '/templates/main.html',
             styles: ['layout.css', 'main.css'],
+            filtration: true,
             load: () => {
                 new Main(this.openRoute.bind(this));
             }
@@ -66,6 +68,7 @@ export class Router {
             layout: '/templates/layout.html',
             template: '/templates/budget/budget.html',
             styles: ['layout.css', 'budget.css'],
+            filtration: true,
             load: () => {
                 new Budget(this.openRoute.bind(this));
             }
@@ -210,6 +213,10 @@ export class Router {
                 } else {
                     this.contentElement.innerHTML = await fetch(currentRoute.template).then(response => response.text());
                 }
+            }
+            if (currentRoute.filtration) {
+                //подключаем фильтрацию расходов\доходов
+                Filtration.activeButton();
             }
             if (currentRoute.load && typeof currentRoute.load === "function") {
                 currentRoute.load();

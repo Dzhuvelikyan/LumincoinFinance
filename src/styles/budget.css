@@ -20,15 +20,13 @@
 .budget table > thead th {
     color: var(--color-link);
 }
-.label-interval {
+a  svg {
     pointer-events: none;
-    transform: translateY(-100%);
+}
+.record {
     opacity: 0;
     transition: all 500ms;
 }
-
-.label-interval.active {
-    pointer-events: visible;
-    transform: translateY(0);
+.record.active {
     opacity: 1;
 }

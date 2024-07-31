@@ -28,10 +28,16 @@
 .circles {
     padding: 7rem 0 2rem;
 }
+
 .circles figure {
     width: 100%;
     max-width: 362px;
 }
+.circle {
+    width: 100%;
+    max-width: 400px;
+}
+
 .circles figure svg{
     width: 100%;
     max-width: 100%;
