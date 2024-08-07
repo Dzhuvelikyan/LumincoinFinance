@@ -1,84 +1,21 @@
 <section id="main" class="main">
     <h2 class="h1 fw-bold mb-5">Главная</h2>
     <section class="nav-buttons d-flex flex-grow-0 gap-4 align-items-center mx-auto overflow-x-auto px-2 pb-1 px-md-1">
-        <a href="javascript:void(0)" class="btn btn-outline-secondary fw-bold py-2 active" role="button">Сегодня</a>
-        <a href="javascript:void(0)" class="btn btn-outline-secondary fw-bold py-2" role="button">Неделя</a>
-        <a href="javascript:void(0)" class="btn btn-outline-secondary fw-bold py-2" role="button">Месяц</a>
-        <a href="javascript:void(0)" class="btn btn-outline-secondary fw-bold py-2" role="button">Год</a>
-        <a href="javascript:void(0)" class="btn btn-outline-secondary fw-bold py-2" role="button">Все</a>
-        <a href="javascript:void(0)" class="btn btn-outline-secondary fw-bold py-2" role="button">Интервал</a>
-        <span class="fw-bold">с<a class="date-link border-0 text-secondary  ms-3" href="javascript:void(0)">Дата</a></span>
-        <span class="fw-bold">по<a class="date-link border-0 text-secondary ms-3" href="javascript:void(0)">Дата</a></span>
+        <a href="/?filter=today" class="btn btn-outline-secondary fw-bold py-2" role="button">Сегодня</a>
+        <a href="/?filter=week" class="btn btn-outline-secondary fw-bold py-2" role="button">Неделя</a>
+        <a href="/?filter=month" class="btn btn-outline-secondary fw-bold py-2" role="button">Месяц</a>
+        <a href="/?filter=year" class="btn btn-outline-secondary fw-bold py-2" role="button">Год</a>
+        <a href="/?filter=all" class="btn btn-outline-secondary fw-bold py-2" role="button">Все</a>
+        <a href="/?filter=interval" class="btn btn-outline-secondary fw-bold py-2" role="button">Интервал</a>
+        <label class="label-interval position-relative fw-bold text-nowrap">с
+            <input id="interval-date-from" type="date" class="date-link border-0 text-secondary ms-3 opacity-1">
+            <!--            <span class="position-absolute w-100 h-100 text-center">Дата</span>-->
+        </label>
+        <label class="label-interval position-relative fw-bold text-nowrap">по
+            <input id="interval-date-to" type="date" class="date-link border-0 text-secondary ms-3 opacity-1">
+            <!--            <span class="position-absolute w-100 h-100 text-center">Дата</span>-->
+        </label>
     </section>
-    <section class="circles d-flex gap-2 justify-content-around flex-sm-row flex-column">
-        <article class="d-flex flex-column align-items-center justify-content-center">
-            <h3 class="fw-bold mb-4">Доходы</h3>
-            <section class="d-flex column-gap-2 gap-md-3 mb-4 px-2 flex-wrap">
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <div class="color" style="background-color: rgb(220, 53, 69)"></div>
-                    <small class="fw-bold">Red</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(253, 126, 20)"></span>
-                    <small class="fw-bold">Orange</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(255, 193, 7)"></span>
-                    <small class="fw-bold">Yellow</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(32, 201, 151)"></span>
-                    <small class="fw-bold">Green</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(13, 110, 253)"></span>
-                    <small class="fw-bold">Blue</small>
-                </div>
-            </section>
-            <figure class="py-3">
-                <svg viewBox="0 0 362 362" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M361 180.999C361 153.897 354.879 127.144 343.095 102.737L181 180.999H361Z" fill="#0D6EFD" stroke="white" />
-                    <path d="M343.095 102.737C322.846 60.7985 287.131 28.3403 243.453 12.1819L181 181L343.095 102.737Z" fill="#20C997" stroke="white" />
-                    <path d="M243.453 12.1818C218.759 3.04643 192.362 -0.560314 166.122 1.61592C139.883 3.79215 114.44 11.6984 91.5887 24.7771C68.7371 37.8558 49.033 55.7885 33.8658 77.3106C18.6985 98.8328 8.43756 123.42 3.8064 149.339L181 181L243.453 12.1818Z" fill="#DC3545" stroke="white" />
-                    <path d="M3.80645 149.34C-2.7924 186.271 2.31328 224.342 18.4099 258.23C34.5064 292.117 60.7894 320.129 93.5847 338.349C126.38 356.568 164.049 364.085 201.325 359.849C238.602 355.612 273.623 339.835 301.494 314.721L181 181L3.80645 149.34Z" fill="#FD7E14" stroke="white" />
-                    <path d="M301.494 314.72C320.225 297.842 335.201 277.217 345.452 254.181C355.703 231.146 361 206.213 361 181H181L301.494 314.72Z" fill="#FFC107" stroke="white" />
-                </svg>
-            </figure>
-        </article>
-        <div class="circles__line mt-auto"></div>
-        <article class="d-flex flex-column align-items-center justify-content-center">
-            <h3 class="fw-bold mb-4">Расходы</h3>
-            <section class="d-flex column-gap-2 gap-md-3 mb-4 px-2 flex-wrap">
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(220, 53, 69)"></span>
-                    <small class="fw-bold">Red</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(253, 126, 20)"></span>
-                    <small class="fw-bold">Orange</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(255, 193, 7)"></span>
-                    <small class="fw-bold">Yellow</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(32, 201, 151)"></span>
-                    <small class="fw-bold">Green</small>
-                </div>
-                <div class="d-flex gap-1 gap-md-2 align-items-center justify-content-center">
-                    <span class="d-inline-block color" style="background-color: rgb(13, 110, 253)"></span>
-                    <small class="fw-bold">Blue</small>
-                </div>
-            </section>
-            <figure class="py-3">
-                <svg viewBox="0 0 362 362" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M361 181C361 151.707 353.851 122.857 340.173 96.9531C326.495 71.0494 306.703 48.8753 282.512 32.3553C258.322 15.8353 230.465 5.46872 201.36 2.15528C172.255 -1.15816 142.782 2.68169 115.497 13.3415L181 181H361Z" fill="#20C997" stroke="white" />
-                    <path d="M115.497 13.3423C87.5155 24.2745 62.7151 42.0362 43.3564 65.0084C23.9977 87.9806 10.6964 115.433 4.66506 144.862C-1.36632 174.292 0.0640501 204.763 8.82572 233.498C17.5874 262.234 33.4017 288.319 54.8272 309.377L181 181.001L115.497 13.3423Z" fill="#FFC107" stroke="white" />
-                    <path d="M54.8273 309.376C67.1786 321.515 81.2173 331.809 96.5091 339.938L181 181L54.8273 309.376Z" fill="#DC3545" stroke="white" />
-                    <path d="M96.509 339.938C132.041 358.827 172.879 365.264 212.499 358.223C252.119 351.181 288.237 331.066 315.084 301.09L181 181L96.509 339.938Z" fill="#0D6EFD" stroke="white" />
-                    <path d="M315.084 301.09C344.651 268.077 361 225.317 361 181H181L315.084 301.09Z" fill="#FD7E14" stroke="white" />
-                </svg>
-            </figure>
-        </article>
+    <section id="container-charts" class="circles d-flex gap-2 justify-content-around flex-sm-row flex-column">
     </section>
 </section>

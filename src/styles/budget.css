@@ -20,12 +20,13 @@
 .budget table > thead th {
     color: var(--color-link);
 }
-@media screen and (max-width: 768px) {
-
+a  svg {
+    pointer-events: none;
 }
-@media screen and (max-width: 575px) {
-
+.record {
+    opacity: 0;
+    transition: all 500ms;
 }
-@media screen and (max-width: 425px) {
-
+.record.active {
+    opacity: 1;
 }

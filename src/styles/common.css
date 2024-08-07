@@ -33,6 +33,29 @@ body {
 h3 {
     color: #290661 !important;
 }
+
+/*.label-interval span {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    cursor: pointer;*/
+/*    transition: 300ms;*/
+/*}*/
+.label-interval span:hover {
+    text-decoration: underline;
+}
+.label-interval {
+    pointer-events: none;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.label-interval.active {
+    pointer-events: visible;
+    transform: translateY(0);
+    opacity: 1;
+}
 @media screen and (max-width: 768px) {
     html {
         font-size: 14px;

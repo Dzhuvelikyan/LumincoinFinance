@@ -1,70 +1,14 @@
 <section id="expenses">
-    <h2 class="h1 fw-bold mb-4">Доходы</h2>
+    <h2 class="h1 fw-bold mb-4">Расходы</h2>
     <section class="d-flex py-3 gap-3 flex-wrap justify-content-center justify-content-xl-start">
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Еда</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Жильё</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Здоровье</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Кафе</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Авто</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Одежда</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Развлечения</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Еда</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
-            <div class="card-body">
-                <h3 class="card-title fw-bold mb-3">Спорт</h3>
-                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>
-            </div>
-        </div>
-        <div class="card" style="width: 22.1rem;">
+<!--        <div class="card" style="width: 22.1rem;">-->
+<!--            <div class="card-body">-->
+<!--                <h3 class="card-title fw-bold mb-3">Еда</h3>-->
+<!--                <a href="/expenses_edit" role="button" class="btn btn-primary me-1">Редактировать</a>-->
+<!--                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Удалить</button>-->
+<!--            </div>-->
+<!--        </div>-->
+        <div id="category-item-create" class="card" style="width: 22.1rem;">
             <div class="card-body">
                 <a href="/expenses_create" role="button" class="btn btn-create d-flex align-items-center justify-content-center h-100 w-100 fs-3 text-secondary opacity-75 fw-bold">+</a>
             </div>
@@ -78,7 +22,7 @@
                     Вы действительно хотите удалить категорию?
                 </div>
                 <div class="modal-footer justify-content-center border-0">
-                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Да, удалить</button>
+                    <button id="delete-category" type="button" class="btn btn-success" data-bs-dismiss="modal">Да, удалить</button>
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Не удалять</button>
                 </div>
             </div>

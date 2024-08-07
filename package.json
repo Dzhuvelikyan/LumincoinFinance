@@ -11,7 +11,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^5.3.3"
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.3",
+    "luxon": "^3.4.4"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

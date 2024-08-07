@@ -1,6 +1,6 @@
 import {AuthUtils} from "../utils/auth-utils.js";
 import {HttpUtils} from "../utils/http-utils.js";
-import {ProcessFullNameUtils} from "../utils/processFullName-utils";
+import {ProcessFullNameUtils} from "../utils/processFullName-utils.js";
 
 export class Auth {
     commonErrorElement = document.getElementById('common-error');
