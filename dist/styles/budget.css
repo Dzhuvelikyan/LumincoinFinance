@@ -1,0 +1,32 @@
+
+.nav-buttons::-webkit-scrollbar, .budget__table::-webkit-scrollbar {
+    height: 6px;
+}
+.nav-buttons::-webkit-scrollbar-track, .budget__table::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+    border-radius: 4px;
+}
+.nav-buttons::-webkit-scrollbar-thumb, .budget__table::-webkit-scrollbar-thumb {
+    background: var(--bs-primary);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nav-buttons .btn {
+    width: 6.3rem;
+    flex: 0 0 auto;
+    letter-spacing: 0.03em;
+}
+.budget table > thead th {
+    color: var(--color-link);
+}
+a  svg {
+    pointer-events: none;
+}
+.record {
+    opacity: 0;
+    transition: all 500ms;
+}
+.record.active {
+    opacity: 1;
+}

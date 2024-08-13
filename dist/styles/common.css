@@ -1,0 +1,68 @@
+@font-face {
+    font-family: Roboto;
+    src: url("../static/fonts/Roboto.ttf");
+}
+
+@font-face {
+    font-family: InterBold;
+    src: url("../static/fonts/Inter-Bold.otf");
+}
+
+@font-face {
+    font-family: SecretServiceRegular;
+    src: url("../static/fonts/Anderson The Secret Service.ttf");
+}
+:root {
+    --font-family: Roboto, sans-serif;
+    --second-family: InterBold, sans-serif;
+    --third-family: SecretServiceRegular, sans-serif;
+    --color-link: #052c65;
+    --accordion-icon-color: #052c65;
+    --accordion-icon-active-color: white;
+}
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+body {
+    font-family: var(--font-family);
+}
+.h1 {
+    color: #052c65;
+}
+h3 {
+    color: #290661 !important;
+}
+
+/*.label-interval span {*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    cursor: pointer;*/
+/*    transition: 300ms;*/
+/*}*/
+.label-interval span:hover {
+    text-decoration: underline;
+}
+.label-interval {
+    pointer-events: none;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 500ms;
+}
+
+.label-interval.active {
+    pointer-events: visible;
+    transform: translateY(0);
+    opacity: 1;
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 425px) {
+    html {
+        font-size: 12px;
+    }
+}

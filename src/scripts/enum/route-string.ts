@@ -1,0 +1,16 @@
+export enum RouteString {
+    main = "/",
+    budget = "/budget",
+    budgetCreate = "/budget_create",
+    budgetEdit = "/budget_edit",
+    income = "/income",
+    incomeCreate = "/income_create",
+    incomeEdit = "/income_edit",
+    expenses = "/expenses",
+    expensesCreate = "/expenses_create",
+    expensesEdit = "/expenses_edit",
+    login = "/login",
+    signup = "/signup",
+    logout = "/logout",
+    notFound = "/404",
+}

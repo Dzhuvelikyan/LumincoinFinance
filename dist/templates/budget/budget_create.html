@@ -1,0 +1,33 @@
+<section id="budget_create">
+  <h2 class="h1 fw-bold mb-4">Создание дохода/расхода</h2>
+  <section class="d-flex py-3 gap-3 flex-wrap justify-content-center justify-content-xl-start">
+    <div class="card border-0" style="width: 24.5rem;">
+      <div class="card-body">
+        <div class="mb-3">
+          <select class="form-control" id="input_budget_create_type">
+            <option value="income">Доход</option>
+            <option value="expense">Расход</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <select id="select_budget_create_category" class="form-control">
+
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <input id="input_budget_create_sum" type="text" class="form-control" placeholder="Сумма в $...">
+        </div>
+        <div class="mb-3">
+          <input id="input_budget_create_date" type="date" class="form-control" placeholder="Дата...">
+        </div>
+        <div class="mb-3">
+          <input id="input_budget_create_comment" type="text" class="form-control" placeholder="Комментарий...">
+        </div>
+        <button id="btn_create" type="button" class="btn btn-success me-1">Создать</button>
+        <a id="btn-cansel" href="/budget?filter=today" class="btn btn-danger">Отмена</a>
+      </div>
+    </div>
+  </section>
+</section>
