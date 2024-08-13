@@ -8,12 +8,12 @@ import {ErrorResponseType} from "../type/error-response.type";
 
 //получаем категории и добавляем их на страницу(в зависимости от того какая это страница)
 export class Categories {
-    page: OperationTypeString;
+    page: string = '';
     openRoute: Function;
     ItemCreateElement: HTMLElement | null;
     requestUrl: string = '';
 
-    constructor(page: OperationTypeString, openRoute: Function) {
+    constructor(page: string, openRoute: Function) {
         this.page = page;
         this.openRoute = openRoute;
         this.ItemCreateElement = document.getElementById('category-item-create');

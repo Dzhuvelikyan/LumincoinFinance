@@ -9,7 +9,7 @@ export class CreateCategory {
     btnCreateElement: HTMLElement | null;
     requestUrl: string = "";
     page: string = '';
-    openRoute: Function
+    openRoute: Function;
 
     constructor(page: string, openRoute: Function) {
         this.page = page;

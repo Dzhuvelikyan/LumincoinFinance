@@ -3,6 +3,7 @@ import {HttpUtils} from "../utils/http-utils";
 import {Config} from "../enum/config";
 import {OperationTypeString} from "../enum/operation-type-string";
 import {CustomResponseType} from "../type/custom-response.type";
+import {RouteString} from "../enum/route-string";
 
 export class EditCategory {
     readonly urlParams: {id: string, category: string};

@@ -9,6 +9,7 @@ import {CustomResponseType} from "../type/custom-response.type";
 import {OperationTypeString} from "../enum/operation-type-string";
 import {ErrorResponseType} from "../type/error-response.type";
 import {DatePeriodType} from "../type/date-period.type";
+import * as bootstrap from 'bootstrap';
 
 export class Budget {
 
@@ -37,6 +38,7 @@ export class Budget {
 
     private async clickDeleteHandler(eve: MouseEvent) {
         const element = eve.target as HTMLElement
+
         if (element.closest('.modal-footer')) {
 
             if (element.classList.contains('btn-success')) {

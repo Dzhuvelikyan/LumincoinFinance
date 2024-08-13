@@ -110,7 +110,7 @@ export class Router {
                 template: '/templates/income/income_create.html',
                 styles: ['layout.css'],
                 load: () => {
-                    new CreateCategory(RouteString.income ,this.openRoute.bind(this));
+                    new CreateCategory(OperationTypeString.income ,this.openRoute.bind(this));
                 }
             },
             {
@@ -120,7 +120,7 @@ export class Router {
                 template: '/templates/income/income_edit.html',
                 styles: ['layout.css'],
                 load: () => {
-                    new EditCategory(RouteString.income ,this.openRoute.bind(this));
+                    new EditCategory(OperationTypeString.income ,this.openRoute.bind(this));
                 }
             },
             {
@@ -140,7 +140,7 @@ export class Router {
                 template: '/templates/expenses/expenses_create.html',
                 styles: ['layout.css'],
                 load: () => {
-                    new CreateCategory(RouteString.expenses ,this.openRoute.bind(this));
+                    new CreateCategory(OperationTypeString.expense ,this.openRoute.bind(this));
                 }
             },
             {
@@ -150,7 +150,7 @@ export class Router {
                 template: '/templates/expenses/expenses_edit.html',
                 styles: ['layout.css'],
                 load: () => {
-                    new EditCategory(RouteString.expenses ,this.openRoute.bind(this));
+                    new EditCategory(OperationTypeString.expense,this.openRoute.bind(this));
                 }
             },
             {

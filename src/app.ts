@@ -1,4 +1,4 @@
-import * as bootstrap from 'bootstrap';
+import 'bootstrap';
 import { Router } from './router';
 class App {
     constructor() {
