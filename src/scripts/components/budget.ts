@@ -1,16 +1,23 @@
-import {HttpUtils} from "../utils/http-utils.js";
-import {config} from "../config.js";
-import {UrlParams} from "../utils/url-params.js";
-import {Filtration} from "./filtration.js";
+import {HttpUtils} from "../utils/http-utils";
+import {Config} from "../enum/config";
+import {UrlParams} from "../utils/url-params";
+import {Filtration} from "./filtration";
+import {RouteString} from "../enum/route-string";
+import {FiltrationString} from "../enum/filtration-string";
+import {OperationType} from "../type/operation.type";
+import {CustomResponseType} from "../type/custom-response.type";
+import {OperationTypeString} from "../enum/operation-type-string";
+import {ErrorResponseType} from "../type/error-response.type";
+import {DatePeriodType} from "../type/date-period.type";
 
 export class Budget {
 
-    recordsElement = document.getElementById('records');// тело таблицы <tbody id="records">
-
-    constructor(openRoute) {
-
+    readonly recordsElement: HTMLElement | null;// тело таблицы <tbody id="records">
+    readonly filterURL: string | null = null;
+    openRoute: Function;
+    constructor(openRoute: Function) {
+        this.recordsElement = document.getElementById('records');
         this.filterURL = UrlParams.get('filter').param;
-
         this.openRoute = openRoute;
 
         //получаем операции и записываем их в таблицу
@@ -19,7 +26,8 @@ export class Budget {
         document.addEventListener('click', this.clickDeleteHandler.bind(this));
 
         document.addEventListener('change', (eve) => {
-            if (eve.target.type === 'date' && this.filterURL === 'interval') {
+            const inputElement: HTMLInputElement = eve.target as HTMLInputElement
+            if (inputElement.type === 'date' && this.filterURL === 'interval') {
                 this.getOperations().then();
             }
 
@@ -27,54 +35,56 @@ export class Budget {
 
     }
 
-    async clickDeleteHandler(eve) {
-        if (eve.target.closest('.modal-footer')) {
+    private async clickDeleteHandler(eve: MouseEvent) {
+        const element = eve.target as HTMLElement
+        if (element.closest('.modal-footer')) {
 
-            if (eve.target.classList.contains('btn-success')) {
+            if (element.classList.contains('btn-success')) {
                 this.deleteOperation().then();
-                this.openRoute(`/budget?filter=${this.filterURL}`);
-            } else if (eve.target.classList.contains('btn-danger')) {
-                this.openRoute(`/budget?filter=${this.filterURL}`);
+                this.openRoute(`${RouteString.budget}?${Config.UTMFilter}=${this.filterURL}`);
+            } else if (element.classList.contains('btn-danger')) {
+                this.openRoute(`${RouteString.budget}?${Config.UTMFilter}=${this.filterURL}`);
             }
 
         }
     }
 
-    async getOperations() {
+    private async getOperations(): Promise<void> {
 
         //получаем даты периода и делаем запрос
-        let [dataFrom, dataTo] = Filtration.getPeriod();
+        const dataPeriod: DatePeriodType | undefined = Filtration.getPeriod();
 
-        if (!dataFrom || !dataTo) {
-            return
+        if (!dataPeriod) {
+            return;
         }
 
-        const result = await HttpUtils.request(`${config.operationsURL}?period=interval&dateFrom=${dataFrom}&dateTo=${dataTo}`);
+        const result: CustomResponseType = await HttpUtils.request(`${Config.operationsURL}?${Config.UTMPeriod}=${FiltrationString.interval}&${Config.UTMDateFrom}=${dataPeriod.dataFrom}&${Config.UTMDateTo}=${dataPeriod.dataTo}`);
         if (result) {
-            if (result.response && !result.response.error) {
+            if ((result.response as OperationType[]) && !(result.response as ErrorResponseType).error) {
                 //выводим операции на экран
-                this.showRecords(result.response);
+                this.showRecords(result.response as OperationType[]);
             }
         }
     }
 
-    async deleteOperation() {
+    private async deleteOperation(): Promise<void> {
         const idOperation = UrlParams.get('id').param;
-        const result = await HttpUtils.request(`${config.operationsURL}/${idOperation}`, "DELETE");
+        const result: CustomResponseType = await HttpUtils.request(`${Config.operationsURL}/${idOperation}`, "DELETE");
         if (result) {
             if (result.redirect) {//проверяем нужен ли редирект на логин
                 this.openRoute(result.redirect);
             }
-            if (result.response && !result.response.error) {
+            if (result.response && !(result.response as ErrorResponseType).error) {
                 alert('Операция успешно удалена.');
-                this.openRoute(`/budget?filter=${this.filterURL}`);
+                this.openRoute(`${RouteString.budget}?${Config.UTMFilter}=${this.filterURL}`);
             }
         }
     }
 
-    showRecords(operations) {//отображение списка фрилансеров в таблице
+    private showRecords(operations: OperationType[]): void {//отображение списка фрилансеров в таблице
         if (!this.recordsElement) {
-            return console.log('тело таблицы tbody с id=records отсутствует');
+            console.log('тело таблицы tbody с id=records отсутствует');
+            return;
         }
 
         if (this.filterURL === 'interval') {
@@ -88,19 +98,19 @@ export class Budget {
 
         for (let i = 0; i < operations.length; i++) {
 
-            const operation = operations[i];
+            const operation: OperationType = operations[i];
 
-            const trElement = document.createElement("tr");
+            const trElement: HTMLTableRowElement = document.createElement("tr");
             trElement.classList.add('record');
 
-            let operationTypeElement = null;
+            let operationTypeElement: string = '';
 
             // insertCell() - сразу добавляет td элемент в trElement
             trElement.insertCell().innerText = `${i + 1}`;//порядковый номер в таблице
 
-            if (operation.type === 'income') {
+            if (operation.type === OperationTypeString.income) {
                 operationTypeElement = `<div class="text-success">Доход</div>`;
-            } else if (operation.type === 'expense') {
+            } else if (operation.type === OperationTypeString.expense) {
                 operationTypeElement = `<div class="text-danger">Расход</div>`;
             }
 
@@ -108,7 +118,7 @@ export class Budget {
 
             trElement.insertCell().innerText = (operation.category) ? operations[i].category : "Нет данных";//категория операции
 
-            trElement.insertCell().innerText = `${operation.amount} ${config.currency}`;// сумма
+            trElement.insertCell().innerText = `${operation.amount} ${Config.currency}`;// сумма
 
             trElement.insertCell().innerText = new Date(operation.date).toLocaleString('ru-RU').split(',')[0];// дата операции
 
